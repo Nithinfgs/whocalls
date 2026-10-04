@@ -13,10 +13,10 @@ A network receipt for <code>npm install</code>, <code>make</code>, a build scrip
 <p align="center"><img src="docs/assets/demo.svg" alt="whocalls listing the hosts contacted by a build, then failing it against an allowlist" width="760"></p>
 
 ```sh
-npx whocalls -- npm install
+npx github:Nithinfgs/whocalls -- npm install
 ```
 
-> `npx whocalls` runs straight from a clone today (`node bin/whocalls.js`). It is structured for npm; see [Install](#install).
+> Runs straight from GitHub today, no clone needed. Once it is on npm this becomes `npx whocalls -- npm install`; the examples below use that short form.
 
 ## In 20 seconds
 
@@ -37,7 +37,10 @@ Supply-chain incidents keep reaching developers through install and build steps.
 Requires Node.js 18.17 or newer. macOS and Linux are supported and tested in CI. Windows is untested; the bypass check does not run there.
 
 ```sh
-# from a clone, today
+# straight from GitHub, today
+npx github:Nithinfgs/whocalls -- <command>
+
+# or from a clone
 git clone https://github.com/Nithinfgs/whocalls && cd whocalls
 node bin/whocalls.js --help
 
