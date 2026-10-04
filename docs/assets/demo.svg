@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="704" viewBox="0 0 760 704" role="img" aria-label="Terminal output of whocalls running a build">
+<rect width="760" height="704" rx="10" fill="#0d1117"/>
+<circle cx="22" cy="20" r="6" fill="#ff5f56"/><circle cx="42" cy="20" r="6" fill="#ffbd2e"/><circle cx="62" cy="20" r="6" fill="#27c93f"/>
+<g font-family="SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="14">
+<text x="20" y="44" xml:space="preserve"><tspan fill="#7ee787">$</tspan><tspan fill="#e6edf3"> npx whocalls -- node examples/chatty-build/build.mjs</tspan></text>
+<text x="20" y="64" xml:space="preserve"><tspan fill="#e6edf3">build finished</tspan></text>
+<text x="20" y="84" xml:space="preserve"><tspan fill="#e6edf3" font-weight="700">whocalls</tspan><tspan fill="#e6edf3"> </tspan><tspan fill="#8b949e">·</tspan><tspan fill="#e6edf3"> node examples/chatty-build/build.mjs </tspan><tspan fill="#8b949e">· exit 0 · 1.2 s</tspan></text>
+<text x="20" y="104" xml:space="preserve"></text>
+<text x="20" y="124" xml:space="preserve"><tspan fill="#e6edf3">  </tspan><tspan fill="#8b949e">HOST                       KIND              CONNS    SENT  RECEIVED</tspan></text>
+<text x="20" y="144" xml:space="preserve"><tspan fill="#e6edf3">  registry.npmjs.org         package registry      1  1.9 KB    9.5 KB</tspan></text>
+<text x="20" y="164" xml:space="preserve"><tspan fill="#e6edf3">  raw.githubusercontent.com  source host           1  1.9 KB    6.9 KB</tspan></text>
+<text x="20" y="184" xml:space="preserve"><tspan fill="#e6edf3">  example.com                other                 1   166 B     762 B</tspan></text>
+<text x="20" y="204" xml:space="preserve"></text>
+<text x="20" y="224" xml:space="preserve"><tspan fill="#e6edf3">  </tspan><tspan fill="#e3b341">Connections that did not go through the proxy:</tspan></text>
+<text x="20" y="244" xml:space="preserve"><tspan fill="#e6edf3">    </tspan><tspan fill="#e3b341">!</tspan><tspan fill="#e6edf3"> example.com (104.20.23.154):80 </tspan><tspan fill="#8b949e">tcp · node (pid 14314)</tspan></text>
+<text x="20" y="264" xml:space="preserve"></text>
+<text x="20" y="284" xml:space="preserve"><tspan fill="#e6edf3">  3 hosts via proxy</tspan><tspan fill="#8b949e"> · </tspan><tspan fill="#e6edf3">1 direct</tspan></text>
+<text x="20" y="304" xml:space="preserve"></text>
+<text x="20" y="324" xml:space="preserve"><tspan fill="#7ee787">$</tspan><tspan fill="#e6edf3"> npx whocalls --allow kind:registry --allow kind:source \</tspan></text>
+<text x="20" y="344" xml:space="preserve"><tspan fill="#e6edf3">    -- node examples/chatty-build/build.mjs</tspan></text>
+<text x="20" y="364" xml:space="preserve"><tspan fill="#e6edf3">build finished</tspan></text>
+<text x="20" y="384" xml:space="preserve"><tspan fill="#e6edf3" font-weight="700">whocalls</tspan><tspan fill="#e6edf3"> </tspan><tspan fill="#8b949e">·</tspan><tspan fill="#e6edf3"> node examples/chatty-build/build.mjs </tspan><tspan fill="#8b949e">· exit 0 · 1.2 s</tspan></text>
+<text x="20" y="404" xml:space="preserve"></text>
+<text x="20" y="424" xml:space="preserve"><tspan fill="#e6edf3">  </tspan><tspan fill="#8b949e">HOST                       KIND              CONNS    SENT  RECEIVED</tspan></text>
+<text x="20" y="444" xml:space="preserve"><tspan fill="#e6edf3">  registry.npmjs.org         package registry      1  1.9 KB    9.5 KB</tspan></text>
+<text x="20" y="464" xml:space="preserve"><tspan fill="#e6edf3">  raw.githubusercontent.com  source host           1  1.9 KB    6.9 KB</tspan></text>
+<text x="20" y="484" xml:space="preserve"><tspan fill="#e6edf3">  </tspan><tspan fill="#ff7b72">example.com              </tspan><tspan fill="#e6edf3">  other                 1   166 B     762 B</tspan></text>
+<text x="20" y="504" xml:space="preserve"></text>
+<text x="20" y="524" xml:space="preserve"><tspan fill="#e6edf3">  </tspan><tspan fill="#e3b341">Connections that did not go through the proxy:</tspan></text>
+<text x="20" y="544" xml:space="preserve"><tspan fill="#e6edf3">    </tspan><tspan fill="#e3b341">!</tspan><tspan fill="#e6edf3"> example.com (104.20.23.154):80 </tspan><tspan fill="#8b949e">tcp · node (pid 14681)</tspan></text>
+<text x="20" y="564" xml:space="preserve"></text>
+<text x="20" y="584" xml:space="preserve"><tspan fill="#e6edf3">  3 hosts via proxy</tspan><tspan fill="#8b949e"> · </tspan><tspan fill="#e6edf3">1 direct</tspan></text>
+<text x="20" y="604" xml:space="preserve"></text>
+<text x="20" y="624" xml:space="preserve"><tspan fill="#e6edf3">  </tspan><tspan fill="#ff7b72" font-weight="700">Policy: 2 violations</tspan></text>
+<text x="20" y="644" xml:space="preserve"><tspan fill="#e6edf3">    </tspan><tspan fill="#ff7b72">✗</tspan><tspan fill="#e6edf3"> example.com </tspan><tspan fill="#8b949e">- not on the allow list</tspan></text>
+<text x="20" y="664" xml:space="preserve"><tspan fill="#e6edf3">    </tspan><tspan fill="#ff7b72">✗</tspan><tspan fill="#e6edf3"> example.com </tspan><tspan fill="#8b949e">- node (pid 14681) bypassed the proxy to reach 104.20.23.154:80</tspan></text>
+</g>
+</svg>
