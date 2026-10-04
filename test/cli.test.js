@@ -11,8 +11,8 @@ import { lsofAvailable } from '../src/sampler.js';
 
 const bin = fileURLToPath(new URL('../bin/whocalls.js', import.meta.url));
 const run = (args, opts = {}) => spawnSync(process.execPath, [bin, ...args], { encoding: 'utf8', ...opts });
-// Node 24 / 22.21+ honour proxy env vars in fetch(); older versions fall back to http.get with an explicit agent-free request.
-const fetcher = (url) => `const u=new URL(${JSON.stringify(url)});require('http').get({host:'127.0.0.1',port:process.env.HTTP_PROXY.split(':').pop(),path:u.href,headers:{host:u.host}},r=>{r.resume();r.on('end',()=>process.exit(0))})`;
+// Talks to the proxy explicitly with a private Agent, so the result does not depend on whether this Node honours NODE_USE_ENV_PROXY.
+const fetcher = (url) => `const u=new URL(${JSON.stringify(url)});const h=require('http');h.get({agent:new h.Agent(),host:'127.0.0.1',port:process.env.HTTP_PROXY.split(':').pop(),path:u.href,headers:{host:u.host}},r=>{r.resume();r.on('end',()=>process.exit(0))})`;
 
 test('--version and --help', () => {
   assert.match(run(['--version']).stdout, /^\d+\.\d+\.\d+/);
