@@ -8,7 +8,7 @@
   "files": ["bin", "src", "README.md", "LICENSE", "CHANGELOG.md"],
   "engines": { "node": ">=18.17" },
   "scripts": {
-    "test": "node --test \"test/*.test.js\"",
+    "test": "node --test test/cli.test.js test/proxy.test.js test/units.test.js",
     "lint": "eslint .",
     "typecheck": "tsc -p tsconfig.json",
     "check": "npm run lint && npm run typecheck && npm test",

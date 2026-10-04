@@ -20,14 +20,14 @@ test('--version and --help', () => {
   assert.equal(run([]).status, 2);
 });
 
-test('reports the hosts a real child process contacts, as JSON', async () => {
+test('reports the hosts a real child process contacts, as JSON', async (t) => {
   const origin = await httpServer();
+  t.after(() => origin.close());
   const out = await new Promise((resolve) => {
     import('node:child_process').then(({ execFile }) =>
       execFile(process.execPath, [bin, '--json', '--include-local', '--no-sample', '--', process.execPath, '-e', fetcher(`http://127.0.0.1:${origin.port}/x`)], (err, stdout) => resolve({ code: err?.code ?? 0, stdout })),
     );
   });
-  await origin.close();
   assert.equal(out.code, 0);
   const json = JSON.parse(out.stdout);
   assert.equal(json.hosts[0].host, '127.0.0.1');
@@ -46,8 +46,9 @@ test('missing command exits 127', () => {
   assert.match(r.stderr, /could not run/);
 });
 
-test('allow list: violation exits 3, --enforce blocks the request', async () => {
+test('allow list: violation exits 3, --enforce blocks the request', async (t) => {
   const origin = await httpServer();
+  t.after(() => origin.close());
   const args = (extra) => ['--no-sample', '--include-local', ...extra, '--', process.execPath, '-e', fetcher(`http://127.0.0.1:${origin.port}/`)];
   const { execFile } = await import('node:child_process');
   const go = (a) => new Promise((resolve) => execFile(process.execPath, [bin, ...a], (err, stdout, stderr) => resolve({ code: err?.code ?? 0, stderr })));
@@ -61,12 +62,12 @@ test('allow list: violation exits 3, --enforce blocks the request', async () => 
   const enforced = await go(args(['--allow', 'example.com', '--enforce']));
   assert.equal(origin.hits.length, before, 'enforced run must not reach the origin');
   assert.ok(enforced.code !== undefined);
-  await origin.close();
 });
 
-test('baseline round trip: save, then pass, then fail on a new host', async () => {
+test('baseline round trip: save, then pass, then fail on a new host', async (t) => {
   const origin = await httpServer();
   const other = await httpServer();
+  t.after(() => Promise.all([origin.close(), other.close()]));
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'whocalls-'));
   const file = path.join(dir, 'base.json');
   const { execFile } = await import('node:child_process');
@@ -79,8 +80,6 @@ test('baseline round trip: save, then pass, then fail on a new host', async () =
   assert.equal(await go([...base, '--baseline', file, ...cmd(`http://127.0.0.1:${origin.port}/`)]), 0);
   fs.writeFileSync(file, JSON.stringify({ version: 1, hosts: ['somewhere.else'] }));
   assert.equal(await go([...base, '--baseline', file, ...cmd(`http://127.0.0.1:${other.port}/`)]), 3);
-  await origin.close();
-  await other.close();
 });
 
 test('detects a connection that bypasses the proxy', { skip: !lanAddress() ? 'no non-loopback interface' : false }, async (t) => {
