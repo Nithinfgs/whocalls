@@ -1,0 +1,30 @@
+{
+  "name": "whocalls",
+  "version": "0.1.0",
+  "description": "See every host a command talks to. A network receipt for npm install, make, curl | sh, or anything else, with a CI allowlist.",
+  "type": "module",
+  "bin": { "whocalls": "bin/whocalls.js" },
+  "exports": { ".": "./src/index.js" },
+  "files": ["bin", "src", "README.md", "LICENSE", "CHANGELOG.md"],
+  "engines": { "node": ">=18.17" },
+  "scripts": {
+    "test": "node --test \"test/*.test.js\"",
+    "lint": "eslint .",
+    "typecheck": "tsc -p tsconfig.json",
+    "check": "npm run lint && npm run typecheck && npm test",
+    "demo": "node scripts/make-demo.mjs"
+  },
+  "keywords": ["network", "egress", "proxy", "supply-chain", "security", "cli", "ci", "npm", "devtools", "audit"],
+  "author": "Nithin Selvaraj",
+  "license": "MIT",
+  "repository": { "type": "git", "url": "git+https://github.com/Nithinfgs/whocalls.git" },
+  "bugs": { "url": "https://github.com/Nithinfgs/whocalls/issues" },
+  "homepage": "https://github.com/Nithinfgs/whocalls#readme",
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "@types/node": "^22.0.0",
+    "eslint": "^9.0.0",
+    "globals": "^15.0.0",
+    "typescript": "^5.6.0"
+  }
+}
